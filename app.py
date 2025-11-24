@@ -61,7 +61,7 @@ def generate_image_report(data, images, bg_path, font_path):
     draw.text((start_x, start_y + line_height*1.5), data["{{LOCATION}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*2.5), data["{{TYPE}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*3.5), data["{{COMMANDER}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*4.5), data["{{RISK}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + line_height*3.5), data["{{RISK}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*5.5), data["{{VEHICLE}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*6.5), data["{{COORD_NAME}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*7.5), data["{{GPS}}"], font=font_text, fill=text_color)
@@ -200,6 +200,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
