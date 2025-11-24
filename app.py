@@ -52,17 +52,17 @@ def generate_image_report(data, images, bg_path, font_path):
     # --- ส่วนที่แก้ไข: ปรับพิกัดข้อความ (แก้ Syntax Error แล้ว) ---
 
     # 1. เขียนหัวข้อเดือน (มุมขวาบน)
-    draw.text((900, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) 
+    draw.text((400, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) 
 
     # 2. ตั้งค่าระยะห่าง
     # start_x: ขยับไปขวา 1150 เพื่อหลบหัวข้อ
-    start_x = 1150  
+    start_x = 980  
     
     # start_y: บรรทัดแรกเริ่มที่ความสูงนี้
-    start_y = 250   
+    start_y = 200   
     
     # gap: ระยะห่างระหว่างบรรทัด (ถ้าบรรทัดซ้อนกันให้เพิ่มเลขนี้, ถ้าห่างไปให้ลดเลขนี้)
-    gap = 80        
+    gap = 60        
 
     # --- เริ่มเขียนข้อมูลทีละบรรทัด ---
     
@@ -225,6 +225,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
