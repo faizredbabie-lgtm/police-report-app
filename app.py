@@ -49,14 +49,23 @@ def generate_image_report(data, images, bg_path, font_path):
     # (ตัวเลขสมมติ: แกน X แนวนอน, แกน Y แนวตั้ง)
     text_color = (0, 0, 0) # สีดำ
 
-    # เขียนหัวข้อเดือน
-    draw.text((400, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) # สีเหลืองตามภาพ
+    # --- ส่วนที่แก้ไข: ปรับพิกัดข้อความ (แก้ Syntax Error แล้ว) ---
 
-    # เขียนเนื้อหาฝั่งขวา (ลองกะระยะจากภาพตัวอย่างของคุณ)
-    start_x = 980  # ตำแหน่งเริ่มต้นแนวนอนของข้อมูล
-    line_height = 55 # ระยะห่างบรรทัด
-    start_y = 200  # บรรทัดแรกเริ่มที่ความสูงนี้
+    # 1. เขียนหัวข้อเดือน (มุมขวาบน)
+    draw.text((900, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) 
 
+    # 2. ตั้งค่าระยะห่าง
+    # start_x: ขยับไปขวา 1150 เพื่อหลบหัวข้อ
+    start_x = 1150  
+    
+    # start_y: บรรทัดแรกเริ่มที่ความสูงนี้
+    start_y = 250   
+    
+    # gap: ระยะห่างระหว่างบรรทัด (ถ้าบรรทัดซ้อนกันให้เพิ่มเลขนี้, ถ้าห่างไปให้ลดเลขนี้)
+    gap = 80        
+
+    # --- เริ่มเขียนข้อมูลทีละบรรทัด ---
+    
     # บรรทัดที่ 1: วันเวลา
     draw.text((start_x, start_y), data["{{DATE}}"], font=font_text, fill=text_color)
     
@@ -83,7 +92,6 @@ def generate_image_report(data, images, bg_path, font_path):
     
     # บรรทัดที่ 9: เส้นทาง/สถานการณ์
     draw.text((start_x, start_y + gap*8), data["{{SITUATION}}"], font=font_text, fill=text_color)
-
     # 4. แปะรูปภาพ 4 รูป (ฝั่งซ้าย)
     # พิกัดกรอบรูป (สมมติ)
     # รูป 1 (ซ้ายบน) | รูป 2 (ขวาบน)
@@ -217,6 +225,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
