@@ -70,7 +70,7 @@ def generate_image_report(data, images, bg_path, font_path):
     draw.text((start_x, start_y), data["{{DATE}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 2: สถานที่
-    draw.text((start_x, start_y + gap*2), data["{{LOCATION}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*1.2), data["{{LOCATION}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 3: ประเภท
     draw.text((start_x, start_y + gap*2), data["{{TYPE}}"], font=font_text, fill=text_color)
@@ -225,6 +225,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
