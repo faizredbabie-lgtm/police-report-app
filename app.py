@@ -39,8 +39,8 @@ def generate_image_report(data, images, bg_path, font_path):
     
     # 2. โหลดฟอนต์ (ปรับขนาดตามความเหมาะสม)
     try:
-        font_header = ImageFont.truetype(font_path, 60) # ฟอนต์หัวข้อใหญ่
-        font_text = ImageFont.truetype(font_path, 32)   # ฟอนต์เนื้อหา
+        font_header = ImageFont.truetype(font_path, 50) # ฟอนต์หัวข้อใหญ่
+        font_text = ImageFont.truetype(font_path, 28)   # ฟอนต์เนื้อหา
     except:
         st.error("โหลดฟอนต์ไม่ได้ เช็คชื่อไฟล์ฟอนต์ให้ถูกต้อง")
         return None
@@ -55,7 +55,7 @@ def generate_image_report(data, images, bg_path, font_path):
     # เขียนเนื้อหาฝั่งขวา (ลองกะระยะจากภาพตัวอย่างของคุณ)
     start_x = 980  # ตำแหน่งเริ่มต้นแนวนอนของข้อมูล
     line_height = 55 # ระยะห่างบรรทัด
-    start_y = 150  # บรรทัดแรกเริ่มที่ความสูงนี้
+    start_y = 200  # บรรทัดแรกเริ่มที่ความสูงนี้
 
     draw.text((start_x, start_y), data["{{DATE}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*1.5), data["{{LOCATION}}"], font=font_text, fill=text_color)
@@ -200,5 +200,6 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
