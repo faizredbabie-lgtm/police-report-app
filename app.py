@@ -79,19 +79,19 @@ def generate_image_report(data, images, bg_path, font_path):
     draw.text((start_x, start_y + gap*3.3), data["{{COMMANDER}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 5: ระดับความเสี่ยง (ตรงนี้ที่ Error แก้ให้แล้วครับ)
-    draw.text((start_x, start_y + gap*4.2), data["{{RISK}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*4.3), data["{{RISK}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 6: ตรวจยานพาหนะ
-    draw.text((start_x, start_y + gap*5.3), data["{{VEHICLE}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*5.5), data["{{VEHICLE}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 7: ผู้ติดต่อ (ข้าม 1 จังหวะเพื่อให้ตรงช่อง)
-    draw.text((start_x, start_y + gap*6.3), data["{{COORD_NAME}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*6.5), data["{{COORD_NAME}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 8: พิกัด
-    draw.text((start_x, start_y + gap*7.3), data["{{GPS}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*7.4), data["{{GPS}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 9: เส้นทาง/สถานการณ์
-    draw.text((start_x, start_y + gap*8.3), data["{{SITUATION}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*8.5), data["{{SITUATION}}"], font=font_text, fill=text_color)
     # 4. แปะรูปภาพ 4 รูป (ฝั่งซ้าย)
     # พิกัดกรอบรูป (สมมติ)
     # รูป 1 (ซ้ายบน) | รูป 2 (ขวาบน)
@@ -225,6 +225,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
