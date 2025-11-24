@@ -53,7 +53,7 @@ def generate_image_report(data, images, bg_path, font_path):
     draw.text((750, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) # สีเหลืองตามภาพ
 
     # เขียนเนื้อหาฝั่งขวา (ลองกะระยะจากภาพตัวอย่างของคุณ)
-    start_x = 900  # ตำแหน่งเริ่มต้นแนวนอนของข้อมูล
+    start_x = 1000  # ตำแหน่งเริ่มต้นแนวนอนของข้อมูล
     line_height = 55 # ระยะห่างบรรทัด
     start_y = 250  # บรรทัดแรกเริ่มที่ความสูงนี้
 
@@ -200,4 +200,5 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
