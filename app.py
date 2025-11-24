@@ -50,12 +50,12 @@ def generate_image_report(data, images, bg_path, font_path):
     text_color = (0, 0, 0) # สีดำ
 
     # เขียนหัวข้อเดือน
-    draw.text((500, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) # สีเหลืองตามภาพ
+    draw.text((400, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) # สีเหลืองตามภาพ
 
     # เขียนเนื้อหาฝั่งขวา (ลองกะระยะจากภาพตัวอย่างของคุณ)
     start_x = 980  # ตำแหน่งเริ่มต้นแนวนอนของข้อมูล
     line_height = 55 # ระยะห่างบรรทัด
-    start_y = 300  # บรรทัดแรกเริ่มที่ความสูงนี้
+    start_y = 150  # บรรทัดแรกเริ่มที่ความสูงนี้
 
     draw.text((start_x, start_y), data["{{DATE}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*1.5), data["{{LOCATION}}"], font=font_text, fill=text_color)
@@ -200,4 +200,5 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
