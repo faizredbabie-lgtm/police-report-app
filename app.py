@@ -57,15 +57,32 @@ def generate_image_report(data, images, bg_path, font_path):
     line_height = 55 # ระยะห่างบรรทัด
     start_y = 200  # บรรทัดแรกเริ่มที่ความสูงนี้
 
+    # บรรทัดที่ 1: วันเวลา
     draw.text((start_x, start_y), data["{{DATE}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*1.5), data["{{LOCATION}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*2.5), data["{{TYPE}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*3.5), data["{{COMMANDER}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*4.8.5), data["{{RISK}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*6.5), data["{{VEHICLE}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*7.5), data["{{COORD_NAME}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*8.5), data["{{GPS}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*9.5), data["{{SITUATION}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 2: สถานที่
+    draw.text((start_x, start_y + gap), data["{{LOCATION}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 3: ประเภท
+    draw.text((start_x, start_y + gap*2), data["{{TYPE}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 4: ผู้ควบคุม
+    draw.text((start_x, start_y + gap*3), data["{{COMMANDER}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 5: ระดับความเสี่ยง (ตรงนี้ที่ Error แก้ให้แล้วครับ)
+    draw.text((start_x, start_y + gap*4), data["{{RISK}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 6: ตรวจยานพาหนะ
+    draw.text((start_x, start_y + gap*5), data["{{VEHICLE}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 7: ผู้ติดต่อ (ข้าม 1 จังหวะเพื่อให้ตรงช่อง)
+    draw.text((start_x, start_y + gap*6), data["{{COORD_NAME}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 8: พิกัด
+    draw.text((start_x, start_y + gap*7), data["{{GPS}}"], font=font_text, fill=text_color)
+    
+    # บรรทัดที่ 9: เส้นทาง/สถานการณ์
+    draw.text((start_x, start_y + gap*8), data["{{SITUATION}}"], font=font_text, fill=text_color)
 
     # 4. แปะรูปภาพ 4 รูป (ฝั่งซ้าย)
     # พิกัดกรอบรูป (สมมติ)
@@ -200,6 +217,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
