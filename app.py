@@ -11,7 +11,7 @@ st.title("👮‍♂️ ระบบสร้างรายงานสาย�
 
 # --- ตรวจสอบไฟล์จำเป็น ---
 required_files = {
-    "template": "Template.pptx",
+    "template": "template.pptx",
     "background": "background.jpg",   # <--- ต้องมีรูปพื้นหลังเปล่า
     "font": "THSarabunNew.ttf"        # <--- ต้องมีไฟล์ฟอนต์
 }
@@ -225,6 +225,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
