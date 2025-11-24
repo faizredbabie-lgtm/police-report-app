@@ -88,10 +88,10 @@ def generate_image_report(data, images, bg_path, font_path):
     draw.text((start_x, start_y + gap*6.7), data["{{COORD_NAME}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 8: พิกัด
-    draw.text((start_x, start_y + gap*7.5), data["{{GPS}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*7.6), data["{{GPS}}"], font=font_text, fill=text_color)
     
     # บรรทัดที่ 9: เส้นทาง/สถานการณ์
-    draw.text((start_x, start_y + gap*8.6), data["{{SITUATION}}"], font=font_text, fill=text_color)
+    draw.text((start_x, start_y + gap*8.7), data["{{SITUATION}}"], font=font_text, fill=text_color)
     # 4. แปะรูปภาพ 4 รูป (ฝั่งซ้าย)
     # พิกัดกรอบรูป (สมมติ)
     # รูป 1 (ซ้ายบน) | รูป 2 (ขวาบน)
@@ -225,6 +225,7 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
 
 
