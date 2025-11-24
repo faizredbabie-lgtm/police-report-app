@@ -45,27 +45,28 @@ def generate_image_report(data, images, bg_path, font_path):
         st.error("โหลดฟอนต์ไม่ได้ เช็คชื่อไฟล์ฟอนต์ให้ถูกต้อง")
         return None
 
-    # 3. กำหนดพิกัดข้อความ (X, Y) - **ต้องปรับแก้ตัวเลขตรงนี้ให้ตรงกับช่องว่างในรูปของคุณ**
-    # (ตัวเลขสมมติ: แกน X แนวนอน, แกน Y แนวตั้ง)
-    text_color = (0, 0, 0) # สีดำ
+  # ... (ส่วนโหลดฟอนต์เหมือนเดิม) ...
 
-    # เขียนหัวข้อเดือน
-    draw.text((750, 90), data["{{HEADER_MONTH}}"], font=font_header, fill=(255, 255, 0)) # สีเหลืองตามภาพ
+    # --- ส่วนที่ต้องแก้: ปรับตำแหน่งและสี ---
+    
+    # 1. ปรับสีตัวหนังสือให้ดำสนิท (ของเดิมอาจจะเทาไป)
+    text_color = (0, 0, 0) 
 
-    # เขียนเนื้อหาฝั่งขวา (ลองกะระยะจากภาพตัวอย่างของคุณ)
-    start_x = 900  # ตำแหน่งเริ่มต้นแนวนอนของข้อมูล
-    line_height = 55 # ระยะห่างบรรทัด
-    start_y = 250  # บรรทัดแรกเริ่มที่ความสูงนี้
+    # 2. ปรับพิกัด (X = แนวนอน, Y = แนวตั้ง)
+    # จากภาพเดิมของคุณ start_x มันน้อยไป ข้อความเลยกินซ้าย
+    # ลองเพิ่มค่า start_x ให้เยอะขึ้น เพื่อดันข้อความไปทางขวา
+    
+    start_x = 980   # <--- (เดิม 900) ลองเปลี่ยนเป็น 980 หรือ 1000 ดูครับ
+    start_y = 250   # <--- (บรรทัดแรกเริ่มที่ความสูงนี้)
+    line_height = 55 # <--- (ระยะห่างระหว่างบรรทัด)
 
+    # เขียนข้อมูลลงภาพ
+    # (หมายเหตุ: โค้ดนี้จะเขียนแค่ "คำตอบ" ลงไป ดังนั้น background.jpg ต้องมี "คำถาม" รออยู่แล้ว)
     draw.text((start_x, start_y), data["{{DATE}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*1.5), data["{{LOCATION}}"], font=font_text, fill=text_color)
     draw.text((start_x, start_y + line_height*2.5), data["{{TYPE}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*3.5), data["{{COMMANDER}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*4.5), data["{{RISK}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*5.5), data["{{VEHICLE}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*6.5), data["{{COORD_NAME}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*7.5), data["{{GPS}}"], font=font_text, fill=text_color)
-    draw.text((start_x, start_y + line_height*8.5), data["{{SITUATION}}"], font=font_text, fill=text_color)
+    
+    # ... (ไล่ไปเรื่อยๆ จนครบ) ...
 
     # 4. แปะรูปภาพ 4 รูป (ฝั่งซ้าย)
     # พิกัดกรอบรูป (สมมติ)
@@ -200,4 +201,5 @@ with d_col3:
                 final_img.save(out_pdf, format="PDF", resolution=100.0)
                 out_pdf.seek(0)
                 st.download_button("คลิกเพื่อโหลด PDF", out_pdf, f"Report_{header_month}.pdf", mime="application/pdf")
+
 
